@@ -1,24 +1,33 @@
 {
   "name": "zksync-root",
   "version": "1.0.0",
-  "license": "MIT",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "sdk/zksync.js",
-      "sdk/zksync-crypto",
-      "contracts",
-      "infrastructure/zk",
-      "infrastructure/reading-tool",
-      "infrastructure/token-lists-manager",
-      "infrastructure/api-docs",
-      "core/tests/ts-tests"
-    ]
+  "license": "MIT",
+  "description": "Monorepo for zkSync SDK, crypto primitives, contracts and infrastructure tools",
+  "author": "Matter Labs",
+  "repository": "https://github.com/matter-labs/zksync",
+  "keywords": ["zksync", "ethereum", "rollup", "zk-rollup", "sdk", "crypto"],
+  "engines": {
+    "node": ">=18.0.0",
+    "yarn": ">=3.0.0"
   },
+  "workspaces": [
+    "sdk/zksync.js",
+    "sdk/zksync-crypto",
+    "contracts",
+    "infrastructure/zk",
+    "infrastructure/reading-tool",
+    "infrastructure/token-lists-manager",
+    "infrastructure/api-docs",
+    "core/tests/ts-tests"
+  ],
   "scripts": {
     "build:zksync-sdk": "yarn zksync prepublish",
     "build:crypto": "yarn crypto build",
     "build:reading-tool": "yarn reading-tool build",
+    "build:all": "yarn build:zksync-sdk && yarn build:crypto && yarn build:reading-tool",
+    "format": "prettier --write .",
+    "lint": "eslint . --ext .ts,.js",
     "zksync": "yarn workspace zksync",
     "crypto": "yarn workspace zksync-crypto",
     "contracts": "yarn workspace franklin-contracts",
